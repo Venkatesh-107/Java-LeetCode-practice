@@ -1,0 +1,55 @@
+name: Auto-Sort LeetCode Problems
+
+on:
+  push:
+    branches:
+      - leetcode # Ensures this only runs on your specific branch
+
+jobs:
+  sort-problems:
+    runs-on: ubuntu-latest
+    # CRITICAL: This prevents an infinite loop where the Action's own commit triggers the Action again
+    if: "!contains(github.event.head_commit.message, 'Auto-sort problems')"
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sort folders by difficulty
+        run: |
+          # Create difficulty folders if they don't exist
+          mkdir -p Easy Medium Hard
+          
+          # Loop through all items in the root directory
+          for dir in */; do
+            # Remove trailing slash
+            dir=${dir%/}
+            
+            # Skip the target folders and hidden folders like .git or .github
+            if [[ "$dir" == "Easy" || "$dir" == "Medium" || "$dir" == "Hard" || "$dir" == .* ]]; then
+              continue
+            fi
+            
+            # Check if it is a LeetHub folder containing a README
+            if [[ -f "$dir/README.md" ]]; then
+              # Look at the first 15 lines of the README to find the difficulty
+              # LeetHub typically wraps difficulty in <h2> or <h3> tags
+              if head -n 15 "$dir/README.md" | grep -iqE "<h2>.*Easy.*</h2>|<h3>.*Easy.*</h3>|>Easy<"; then
+                mv "$dir" Easy/
+              elif head -n 15 "$dir/README.md" | grep -iqE "<h2>.*Medium.*</h2>|<h3>.*Medium.*</h3>|>Medium<"; then
+                mv "$dir" Medium/
+              elif head -n 15 "$dir/README.md" | grep -iqE "<h2>.*Hard.*</h2>|<h3>.*Hard.*</h3>|>Hard<"; then
+                mv "$dir" Hard/
+              fi
+            fi
+          done
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          
+          # Only commit if files were actually moved
+          git diff --staged --quiet || git commit -m "Auto-sort problems by difficulty"
+          git push
