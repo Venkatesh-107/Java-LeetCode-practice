@@ -3,7 +3,7 @@ name: Auto-Sort LeetCode Problems
 on:
   push:
     branches:
-      - leetcode # Ensures this only runs on your specific branch
+      - main # Ensures this only runs on your specific branch
 
 jobs:
   sort-problems:
