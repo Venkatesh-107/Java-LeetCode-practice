@@ -4,7 +4,7 @@ class Solution {
         int r=0;
      while(x!=0){
         int t= x % 10;
-        if (r > Integer.MAX_VALUE / 10 || (r == Integer.MAX_VALUE / 10 && t > 7)) {
+        if (r > Integer.MAX_VALUE / 10 || (r == Integer.MAX_VALUE / 10 && t > 8)) {
                 return 0;
             }
         if (r < Integer.MIN_VALUE / 10 || (r == Integer.MIN_VALUE / 10 && t < -8)) {
