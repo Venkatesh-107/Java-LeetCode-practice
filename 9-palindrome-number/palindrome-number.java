@@ -4,10 +4,7 @@ class Solution {
     public static boolean isPalindrome(int x) {
       int r=0;
       int o=x;
-      if(x<0) {
-        return false;
-      }
-      while(x!=0){
+      while(x>0){
         int d = x%10;
         if(r > Integer.MAX_VALUE /10 || r == Integer.MAX_VALUE /10 && d >7 ){
             return false ;
