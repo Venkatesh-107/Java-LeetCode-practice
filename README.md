@@ -4,7 +4,7 @@ A structured repository dedicated to mastering Data Structures, Algorithms (DSA)
 
 ---
 
-## 📊 LeetCode Metrics
+##  LeetCode Metrics
 
 | Metric | Details |
 | :--- | :--- |
@@ -12,11 +12,4 @@ A structured repository dedicated to mastering Data Structures, Algorithms (DSA)
 | **Language** | Java 17+ |
 | **Automation** | Folders auto-sorted by difficulty on push |
 
-### 🎯 Solved Statistics
 
-```text
-🔴 Hard:    [00]
-🟡 Medium:  [00]
-🟢 Easy:    [00]
-━━━━━━━━━━━━━━━
-Total:      [000]
