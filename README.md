@@ -1,6 +1,6 @@
 # ☕ Java LeetCode Practice
 
-![Java LeetCode Practice Preview](./view.svg)
+![Java LeetCode Practice Preview](./view.png)
 
 A polished Java project showcasing LeetCode problem solutions and algorithm skills. Ideal for LinkedIn sharing, this repo highlights 25+ Java solutions, clean folder organization, and practical coding examples for interview preparation.
 
